@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>Racheal's Python Exam</title>
+    <style>
+        .wrapper{
+            display: flex;
+            width: 1000px;
+            margin: 0px auto;
+        }
+        *{
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        .col {
+            width: 500px;
+            display: flex;
+            vertical-align: top;
+        }
+
+        .error {
+            color: #f00;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #090;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Welcome!</h1>
+    <div class ="wrapper">
+        <fieldset class="col">
+        <legend>Register</legend>
+        <form action="/register" method="POST">
+            {% csrf_token %}
+    
+            <br>First Name: <input type="text" name="first_name"><br>
+            <br> Last Name: <input type="text" name="last_name"><br>
+            <br> Username: <input type="text" name="username"><br>
+            <br> E-mail: <input type="email" name="email"><br>
+            <br> Password: <input type="password" name="password"><br>
+            <br> Confirm PW: <input type="password" name="confirm"><br>
+            *Password should be at least 8 characters<br>
+            <br><button type="submit">Register</button>
+        </form>
+    </fieldset>
+    <br>
+    <fieldset class = "col">
+        <legend>Login</legend>
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            <br>Username: <input type="text" name="username"><br>
+            <br>Password: <input type="password" name="password"><br>
+            <br><button type="submit">Login</button><br>
+        </form>
+    </fieldset>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li
+            {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

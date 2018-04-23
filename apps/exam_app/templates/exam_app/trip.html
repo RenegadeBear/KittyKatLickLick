@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trip</title>
+    <style>
+        ul, li {
+            list-style-type: none;
+            display: flex;
+            float: right;
+            padding: 5px;
+        }
+        *{
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        .wrapper{
+            width: 1000px;
+            margin: 0px auto;
+        }
+        h3 {
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul>
+            <li><a href="/travels">Home</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+
+        <h2>{{trip.destination}}</h2>
+        <h3>Planned By: {{trip.planner.first_name}} {{trip.planner.last_name}}</h3>
+        <h3>Description: {{trip.plan}}</h3>
+        <h3>Travel Date From: {{trip.start}}</h3>
+        <h3>Travel Date To: {{trip.end}}</h3>
+
+
+        <h2>Other users' joining the trip:</h2>
+        {% for member in joined_by %}
+        <h3>{{member.first_name}} {{member.last_name}}</h3>
+        {% endfor %}
+
+    </div>
+</body>
+</html>

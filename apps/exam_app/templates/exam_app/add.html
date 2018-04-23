@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .wrapper{
+        width: 1000px;
+        margin: 0px auto;
+    }
+    ul, li {
+        list-style-type: none;
+        display: flex;
+        float: right;
+        padding: 5px;
+    }
+    a {
+        display: flex;
+        float: right;
+    }
+    *{
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    .col {
+        width: 600px;
+    }
+    button {
+        float: right;
+    }
+    
+    .error {
+            color: #f00;
+            font-weight: bold;
+    }
+    .success {
+            color: #090;
+            font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul>
+            <li><a href="/travels">Home</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        <fieldset class="col">
+            <legend>Add a Trip</legend>
+            <form action="/add_trip" method="POST">
+                {% csrf_token %}
+        
+                <br>Destination: <input type="text" name="destination"><br>
+                <br>Description: <textarea name="plan"></textarea><br>
+                <br> Travel Date From: <input type="date" name="start"><br>
+                <br> Travel Date To: <input type="date" name="end"><br>
+                <br><button type="submit">Add</button>
+            </form>
+        </fieldset>
+        <br>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li
+                {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+    </div>
+</body>
+</html>
